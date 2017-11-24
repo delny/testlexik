@@ -32,4 +32,13 @@ class UserGroupManager
     {
         return $this->manager->getRepository(UserGroup::class)->findAll();
     }
+
+    /**
+     * @param String $search
+     * @return array
+     */
+    public function lookFor(String $search) //available only PHP 7, in earlier remove type String
+    {
+        return $this->manager->getRepository(UserGroup::class)->lookFor($search);
+    }
 }

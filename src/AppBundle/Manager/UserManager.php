@@ -45,10 +45,28 @@ class UserManager
     }
 
     /**
+     * @param User $user
+     */
+    public function delete(User $user)
+    {
+        $this->manager->remove($user);
+        $this->manager->flush();
+    }
+
+    /**
      * @return User[]|array
      */
     public function getAllUsers()
     {
         return $this->manager->getRepository(User::class)->findAll();
+    }
+
+    /**
+     * @param String $search
+     * @return array
+     */
+    public function lookFor(String $search) //available only PHP 7, in earlier remove type String
+    {
+        return $this->manager->getRepository(User::class)->lookFor($search);
     }
 }
