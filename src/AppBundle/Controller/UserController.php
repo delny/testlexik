@@ -77,6 +77,28 @@ class UserController extends Controller
 
     /**
      * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @Route("/usermanydel/", name="usermanydel")
+     */
+    public function delManyAction(Request $request)
+    {
+        //call manager
+        $userManager = $this->getUserManager();
+        //get id to users to delete
+        $userIds = $request->get('id');
+
+        foreach ($userIds as $userId)
+        {
+            if($user = $userManager->findById($userId)){
+                $userManager->delete($user);
+            }
+        }
+
+        return $this->redirectToRoute('userlist');
+    }
+
+    /**
+     * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      * @Route("/search", name="search")
      */

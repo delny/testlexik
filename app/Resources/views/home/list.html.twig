@@ -16,36 +16,47 @@
         <div>
             <p><a href="{{ path('usernew') }}">Ajouter un utilisateur</a></p>
         </div>
-        <table class="table table-striped">
-            <thead>
-            <tr>
-                <th scope="col">Groupe</th>
-                <th scope="col">Nom Pr&eacute;nom</th>
-                <th scope="col">Email</th>
-                <th scope="col">D&eacute;tail</th>
-            </tr>
-            </thead>
-            <tbody>
-            {% for group in groups %}
-                {% for user in group.users %}
-                    <tr>
-                        <td>{{ user.getGroup.getName }}</td>
-                        <td>{{ user.getLastName | upper }} {{ user.getFirstName }}</td>
-                        <td>{{ user.getEmail }}</td>
-                        <td>
-                            <a href="#" onclick="window.open('{{ path('userdetail',{'id':user.getId }) }}','Detail de l\'utilisateur','menubar=no, scrollbars=no, top=100, left=100, width=200, height=100');">
-                                Voir d&eacute;tail
-                            </a>
-                            <br />
-                            <a href="{{ path('userdel',{'id':user.getId}) }}">Supprimer cet utilisateur</a>
-                        </td>
-                    </tr>
+        <form action="{{ path('usermanydel') }}">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Groupe</th>
+                    <th scope="col">Nom Pr&eacute;nom</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">D&eacute;tail</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for group in groups %}
+                    {% for user in group.users %}
+                        <tr>
+                            <td>
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input type="checkbox" name="id[]" value="{{ user.getId }}" class="form-check-input">
+                                    </label>
+                                </div>
+                            </td>
+                            <td>{{ user.getGroup.getName }}</td>
+                            <td>{{ user.getLastName | upper }} {{ user.getFirstName }}</td>
+                            <td>{{ user.getEmail }}</td>
+                            <td>
+                                <a href="#" onclick="window.open('{{ path('userdetail',{'id':user.getId }) }}','Detail de l\'utilisateur','menubar=no, scrollbars=no, top=100, left=100, width=200, height=100');">
+                                    Voir d&eacute;tail
+                                </a>
+                                <br />
+                                <a href="{{ path('userdel',{'id':user.getId}) }}">Supprimer cet utilisateur</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                {% else %}
+                    Aucun utilisateur
                 {% endfor %}
-            {% else %}
-                Aucun utilisateur
-            {% endfor %}
-            </tbody>
+                </tbody>
         </table>
+            <button type="submit" class="btn btn-default">Supprimer les utilisateurs selectionnes</button>
+        </form>
 
     </div>
 {% endblock %}
