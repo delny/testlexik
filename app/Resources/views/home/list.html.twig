@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <h1>Liste des utilisateurs</h1>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th scope="col">Groupe</th>
+                <th scope="col">Nom Pr&eacute;nom</th>
+                <th scope="col">Email</th>
+                <th scope="col">D&eacute;tail</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for group in groups %}
+                {% for user in group.users %}
+                    <tr>
+                        <td>{{ user.getGroup.getName }}</td>
+                        <td>{{ user.getLastName | upper }} {{ user.getFirstName }}</td>
+                        <td>{{ user.getEmail }}</td>
+                        <td><a href="#">Voir d&eacute;tail</a></td>
+                    </tr>
+                {% endfor %}
+            {% else %}
+                Aucun utilisateur
+            {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+{% endblock %}

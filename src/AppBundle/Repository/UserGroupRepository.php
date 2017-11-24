@@ -10,4 +10,12 @@ namespace AppBundle\Repository;
  */
 class UserGroupRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findAll()
+    {
+        return $this->createQueryBuilder('u')
+            ->select('u')
+            ->orderBy('u.name', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
 }
