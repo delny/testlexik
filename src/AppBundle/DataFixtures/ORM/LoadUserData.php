@@ -33,6 +33,13 @@ class LoadUserData extends AbstractFixture implements OrderedFixtureInterface
                 'group' => $this->getReference('usergroup-0')
             ],
             [
+                'firstName' => 'Marc',
+                'lastName' => 'Richard',
+                'email' => 'mrichard@free.fr',
+                'birthday' => \DateTime::createFromFormat('Y-m-d H:i:s', '1985-12-04 00:00:00'),
+                'group' => $this->getReference('usergroup-0')
+            ],
+            [
                 'firstName' => 'Alain',
                 'lastName' => 'Verse',
                 'email' => 'alainverse@gmail.com',
