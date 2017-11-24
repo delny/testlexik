@@ -53,6 +53,16 @@ class UserManager
         $this->manager->flush();
     }
 
+
+    /**
+     * @param $id
+     * @return User|null|object
+     */
+    public function findById($id)
+    {
+        return $this->manager->getRepository(User::class)->find($id);
+    }
+
     /**
      * @return User[]|array
      */
