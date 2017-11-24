@@ -60,4 +60,13 @@ class UserManager
     {
         return $this->manager->getRepository(User::class)->findAll();
     }
+
+    /**
+     * @param String $search
+     * @return array
+     */
+    public function lookFor(String $search) //available only PHP 7, in earlier remove type String
+    {
+        return $this->manager->getRepository(User::class)->lookFor($search);
+    }
 }

@@ -26,8 +26,7 @@
             </tr>
             </thead>
             <tbody>
-            {% for group in groups %}
-                {% for user in group.users %}
+            {% for user in users %}
                     <tr>
                         <td>{{ user.getGroup.getName }}</td>
                         <td>{{ user.getLastName | upper }} {{ user.getFirstName }}</td>
@@ -40,9 +39,8 @@
                             <a href="{{ path('userdel',{'id':user.getId}) }}">Supprimer cet utilisateur</a>
                         </td>
                     </tr>
-                {% endfor %}
             {% else %}
-                Aucun utilisateur
+                <tr><td colspan="4">Aucun utilisateur trouvé</td></tr>
             {% endfor %}
             </tbody>
         </table>

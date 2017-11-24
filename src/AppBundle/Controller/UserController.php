@@ -76,6 +76,23 @@ class UserController extends Controller
     }
 
     /**
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     * @Route("/search", name="search")
+     */
+    public function searchAction(Request $request)
+    {
+        //call usergroupmanager
+        $userManager = $this->get('app.user.manager');
+
+        $users = $userManager->lookFor($request->query->get('search'));
+
+        return $this->render(':home:search.html.twig',[
+            'users' => $users,
+        ]);
+    }
+
+    /**
      * @return \AppBundle\Manager\UserManager|object
      */
     private function getUserManager()

@@ -10,11 +10,29 @@ namespace AppBundle\Repository;
  */
 class UserGroupRepository extends \Doctrine\ORM\EntityRepository
 {
+    /**
+     * @return array
+     */
     public function findAll()
     {
         return $this->createQueryBuilder('u')
             ->select('u')
             ->orderBy('u.name', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
+
+    /**
+     * @param String $search
+     * @return array
+     */
+    public function lookFor(String $search)//available only PHP 7, in earlier remove type String
+    {
+        return $this->createQueryBuilder('u')
+            ->select('u')
+            ->orWhere('u.name LIKE :search')
+            ->orWhere('u.users LIKE :search')
+            ->setParameter(':search','%'.$search.'%')
             ->getQuery()
             ->getResult();
     }
