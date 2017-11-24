@@ -45,6 +45,15 @@ class UserManager
     }
 
     /**
+     * @param User $user
+     */
+    public function delete(User $user)
+    {
+        $this->manager->remove($user);
+        $this->manager->flush();
+    }
+
+    /**
      * @return User[]|array
      */
     public function getAllUsers()

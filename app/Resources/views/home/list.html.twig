@@ -30,6 +30,8 @@
                             <a href="#" onclick="window.open('{{ path('userdetail',{'id':user.getId }) }}','Detail de l\'utilisateur','menubar=no, scrollbars=no, top=100, left=100, width=200, height=100');">
                                 Voir d&eacute;tail
                             </a>
+                            <br />
+                            <a href="{{ path('userdel',{'id':user.getId}) }}">Supprimer cet utilisateur</a>
                         </td>
                     </tr>
                 {% endfor %}

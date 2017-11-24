@@ -32,7 +32,7 @@ class UserController extends Controller
 
     /**
      * @param Request $request
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      * @Route("/usernew", name="usernew")
      */
     public function newAction(Request $request)
@@ -56,6 +56,23 @@ class UserController extends Controller
         return $this->render(':user:new.html.twig',[
             'form' => $form->createView(),
         ]);
+    }
+
+    /**
+     * @param User $user
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @Route("/userdel/{id}", name="userdel")
+     */
+    public function delAction(User $user, Request $request)
+    {
+        //call manager
+        $userManager = $this->getUserManager();
+
+        //delete video
+        $userManager->delete($user);
+
+        return $this->redirectToRoute('userlist');
     }
 
     /**
