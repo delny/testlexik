@@ -28,6 +28,11 @@ class UserGroup
      */
     private $name;
 
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\User", mappedBy="group")
+     */
+    private $users;
+
 
     /**
      * Get id
@@ -62,5 +67,22 @@ class UserGroup
     {
         return $this->name;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getUsers()
+    {
+        return $this->users;
+    }
+
+    /**
+     * @param mixed $users
+     */
+    public function setUsers($users)
+    {
+        $this->users = $users;
+    }
+
 }
 

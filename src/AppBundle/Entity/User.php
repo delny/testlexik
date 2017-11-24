@@ -49,6 +49,12 @@ class User
      */
     private $birthday;
 
+    /**
+     * @var UserGroup
+     *
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\UserGroup", inversedBy="users")
+     */
+    private $group;
 
 
     /**
@@ -156,5 +162,23 @@ class User
     {
         return $this->birthday;
     }
+
+    /**
+     * @return UserGroup
+     */
+    public function getGroup()
+    {
+        return $this->group;
+    }
+
+    /**
+     * @param UserGroup $group
+     */
+    public function setGroup($group)
+    {
+        $this->group = $group;
+    }
+
+
 }
 
