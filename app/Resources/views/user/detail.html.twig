@@ -1,0 +1,7 @@
+<div>
+    {% if user %}
+        {{ user.getLastName | upper }} {{ user.getFirstName }} -- {{ user.getAge }} ans
+    {% else %}
+        <p>Une erreur est survenue</p>
+    {% endif %}
+</div>

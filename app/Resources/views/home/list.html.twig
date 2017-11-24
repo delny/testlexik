@@ -1,5 +1,9 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}
+    Liste
+{% endblock %}
+
 {% block body %}
     <div class="container">
         <h1>Liste des utilisateurs</h1>
@@ -19,7 +23,11 @@
                         <td>{{ user.getGroup.getName }}</td>
                         <td>{{ user.getLastName | upper }} {{ user.getFirstName }}</td>
                         <td>{{ user.getEmail }}</td>
-                        <td><a href="#">Voir d&eacute;tail</a></td>
+                        <td>
+                            <a href="#" onclick="window.open('{{ path('userdetail',{'id':user.getId }) }}','Detail de l\'utilisateur','menubar=no, scrollbars=no, top=100, left=100, width=200, height=100');">
+                                Voir d&eacute;tail
+                            </a>
+                        </td>
                     </tr>
                 {% endfor %}
             {% else %}

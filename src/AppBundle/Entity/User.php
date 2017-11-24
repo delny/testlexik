@@ -179,6 +179,12 @@ class User
         $this->group = $group;
     }
 
+    public function getAge()
+    {
+        $today = new \DateTime();
+        return $today->diff($this->birthday,true)->y;
+    }
+
 
 }
 
