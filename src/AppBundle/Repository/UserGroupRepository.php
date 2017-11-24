@@ -31,7 +31,6 @@ class UserGroupRepository extends \Doctrine\ORM\EntityRepository
         return $this->createQueryBuilder('u')
             ->select('u')
             ->orWhere('u.name LIKE :search')
-            ->orWhere('u.users LIKE :search')
             ->setParameter(':search','%'.$search.'%')
             ->getQuery()
             ->getResult();
